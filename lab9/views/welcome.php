@@ -2,6 +2,18 @@
     <a href="/order/neworder" class="btn btn-large btn-primary">Start a new order</a>    
     <a href="/admin" class="btn btn-large btn-danger">Secret Admin Stuff</a>
 </p>
+
+<form action="xx.php">
+Username:<br>
+<input type="text" name="username" >
+<br>
+Password:<br>
+<input type="text" name="password" >
+<br><br>
+<input type="submit" value="Submit">
+</form> 
+
+
 <p>Order summary:</p>
 <table class="table">
     <tr>
