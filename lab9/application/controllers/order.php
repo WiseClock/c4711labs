@@ -17,6 +17,11 @@ class Order extends Application {
 
     // start a new order
     function neworder() {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+
         $order_num = $this->orders->highest() + 1;
 
         $record = $this->orders->create();
@@ -31,14 +36,22 @@ class Order extends Application {
 
     // add to an order
     function display_menu($order_num = null) {
-        if ($order_num == null)
-            redirect('/order/neworder');
+        $title = 'Menu';
+        $this->data['checkout'] = "";
+        $this->data['order_num'] = "0";
+
+        if ($this->ion_auth->logged_in())
+        {
+            if ($order_num == null)
+                redirect('/order/neworder');
+            $this->data['order_num'] = $order_num;
+            $title = 'Order #' . $order_num . ' (' . number_format($this->orders->total($order_num), 2) . ')';
+            $this->data['checkout'] = 'Click on a menu item below to add it to your order, or<a href="/order/checkout/{order_num}" class="btn btn-primary">Checkout</a>';
+        }
 
         $this->data['pagebody'] = 'show_menu';
-        $this->data['order_num'] = $order_num;
 
         // get order details for title
-        $title = 'Order #' . $order_num . ' (' . number_format($this->orders->total($order_num), 2) . ')';
         $this->data['title'] = $title;
 
         // Make the columns
@@ -63,6 +76,11 @@ class Order extends Application {
 
     // checkout
     function checkout($order_num) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+
         $this->data['title'] = 'Checking Out';
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
@@ -82,6 +100,11 @@ class Order extends Application {
 
     // proceed with checkout
     function commit($order_num) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+
         if (!$this->orders->validate($order_num))
             redirect('/order/display_menu/' . $order_num);
         $record = $this->orders->get($order_num);
@@ -94,6 +117,11 @@ class Order extends Application {
 
     // cancel the order
     function cancel($order_num) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+
         $this->orderitems->delete_some($order_num);
         $record = $this->orders->get($order_num);
         $record->status = 'x';

@@ -20,6 +20,12 @@ class Welcome extends Application {
     //-------------------------------------------------------------
 
     function index() {
+        $this->data['authenbtn'] = '<a href="/auth/login" class="btn btn-large btn-default">Login</a>';
+        if ($this->ion_auth->logged_in())
+        {
+            $this->data['authenbtn'] = '<a href="/auth/logout" class="btn btn-large btn-default">Logout</a>';
+        }
+
         $this->data['title'] = 'Jim\'s Joint!';
         $this->data['pagebody'] = 'welcome';
 

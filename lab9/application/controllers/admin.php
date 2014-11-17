@@ -20,6 +20,15 @@ class Admin extends Application {
     //-------------------------------------------------------------
 
     function index() {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $this->data['title'] = 'Jim\'s Joint Administration!';
         $this->data['pagebody'] = 'admin';
 
@@ -35,6 +44,15 @@ class Admin extends Application {
     // show the menu items, but using nest view fragments
     // the output looks the same - we just get there differently
     function list2() {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $this->data['title'] = 'Jim\'s Joint Administration (view 2)!';
         $this->data['pagebody'] = 'list2';
 
@@ -56,6 +74,15 @@ class Admin extends Application {
 
     // present a menu item for editing
     function edit3($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $this->data['title'] = 'Jim\'s Joint Maintenance (step 3)!';
         $this->data['pagebody'] = 'edit3';
 
@@ -69,6 +96,15 @@ class Admin extends Application {
 
     // handle a proposed menu item form submission
     function post3($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $fields = $this->input->post(); // gives us an associative array
         // test the incoming fields
         if (strlen($fields['name']) < 1)
@@ -94,6 +130,15 @@ class Admin extends Application {
 
     // present a menu item for editing
     function edit4($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $this->data['title'] = 'Jim\'s Joint Maintenance (step 4)!';
         $this->data['pagebody'] = 'edit4';
 
@@ -124,6 +169,15 @@ class Admin extends Application {
 
     // handle a proposed menu item form submission
     function post4($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $fields = $this->input->post(); // gives us an associative array
         // test the incoming fields
         if (strlen($fields['name']) < 1)
@@ -156,6 +210,15 @@ class Admin extends Application {
 
     // present a menu item for editing
     function edit5($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $this->data['title'] = 'Jim\'s Joint Maintenance (step 5)!';
         $this->data['pagebody'] = 'edit5';
 
@@ -197,6 +260,15 @@ class Admin extends Application {
 
     // handle a proposed menu item form submission
     function post5($which) {
+        if (!$this->ion_auth->logged_in())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        if ($this->ion_auth->logged_in() && !$this->ion_auth->is_admin($this->ion_auth->get_user_id()))
+        {
+            redirect('welcome', 'refresh');
+        }
+
         $fields = $this->input->post(); // gives us an associative array
         // test the incoming fields
         if (strlen($fields['name']) < 1)

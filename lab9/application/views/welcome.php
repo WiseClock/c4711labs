@@ -1,6 +1,8 @@
 <p class="lead">
-    <a href="/order/neworder" class="btn btn-large btn-primary">Start a new order</a>    
+    {authenbtn}
+    <a href="/order/neworder" class="btn btn-large btn-primary">Start a new order</a>
     <a href="/admin" class="btn btn-large btn-danger">Secret Admin Stuff</a>
+    <a href="/order/display_menu" class="btn btn-large btn-default">Menu</a>
 </p>
 <p>Order summary:</p>
 <table class="table">
